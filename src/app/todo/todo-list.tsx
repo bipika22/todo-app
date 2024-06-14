@@ -44,10 +44,10 @@ setTodoList(newTodos)
 
   return (
     <ul>
-      {todoList.map((item, index) => {
+      {todoList.map((item) => {
         return (
           <TodoItem
-            key={index} 
+            key={`todo-${item.id}`}
             text={item.title}
             description={item.description}
             completed={item.completed}
