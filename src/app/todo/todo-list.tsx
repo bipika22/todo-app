@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TodoItem from "./todo-item";
-// import UseState from "react";
+
 
 const DEFAULT_TODO_LIST = [
   {
@@ -33,22 +33,29 @@ export default function Todolist() {
         };
       }
       return todo
-    });
+    })
     setTodoList(newTodos)
-  };
+  }
+  const removeTodo =(id)=>{
+const newTodos =todoList.filter(item=>item.id!==id)
+
+setTodoList(newTodos)
+  }
+
   return (
     <ul>
       {todoList.map((item, index) => {
         return (
           <TodoItem
-            key={index}
+            key={index} 
             text={item.title}
             description={item.description}
             completed={item.completed}
             id={item.id}
             toggleCompleted={toggleCompleted}
+            removeTodo={removeTodo}
           />
-        );
+        ); 
       })}
     </ul>
   );
