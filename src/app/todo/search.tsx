@@ -4,7 +4,12 @@
 // uncontrolled component
 //controlled component
 
-export default function Search(props) {
+interface SearchProps {
+  search: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export default function Search(props: SearchProps) {
   const { search, handleChange } = props;
   return (
     <div>

@@ -1,21 +1,26 @@
-import Button from "../../components/button";
 import { useState } from "react";
 import uuid4 from "uuid4";
+import { Button } from "@/components/ui/button";
+import { ITodoItem } from "./todo";
 
-function TodoForm(props) {
+interface TodoFormProps {
+  addTodo: (todo: ITodoItem) => void;
+}
+
+function TodoForm(props: TodoFormProps) {
   const { addTodo } = props;
   const [todo, setTodo] = useState({
     title: "",
     description: "",
   });
   const { title, description } = todo;
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     console.log(e, "event");
     setTodo({ ...todo, [name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newTodo = { ...todo, completed: false, id: uuid4() };
     addTodo(newTodo);

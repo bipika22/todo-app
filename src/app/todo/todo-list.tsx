@@ -1,6 +1,13 @@
 import TodoItem from "./todo-item";
+import { ITodoItem } from "./todo";
 
-export default function Todolist(props) {
+interface TodoListProps {
+  todoList: ITodoItem[];
+  removeTodo: (id: string) => void;
+  toggleCompleted: (id: string) => void;
+}
+
+export default function TodoList(props: TodoListProps) {
   const { todoList, toggleCompleted, removeTodo } = props;
   if (todoList.length <= 0) {
     return <h1>No Todo Item found</h1>;
@@ -12,7 +19,7 @@ export default function Todolist(props) {
         return (
           <TodoItem
             key={`todo-${id}`}
-            text={title}
+            title={title}
             description={description}
             completed={completed}
             id={id}

@@ -1,17 +1,28 @@
 import { Button } from "../../components/ui/button";
 
-function TodoItem(props) {
+interface TodoItemProps {
+  completed: boolean;
+  id: string;
+  title: string;
+  description: string;
+  removeTodo: (id: string) => void;
+  toggleCompleted: (id: string) => void;
+}
+
+function TodoItem(props: TodoItemProps) {
+  const { completed, toggleCompleted, removeTodo, title, description, id } =
+    props;
   return (
     <li>
       <input
         type="checkbox"
-        checked={props.completed}
-        value={props.completed}
-        onChange={() => props.toggleCompleted(props.id)}
+        checked={completed}
+        value={completed ? "true" : "false"}
+        onChange={() => toggleCompleted(id)}
       />
-      <h6> {props.text}</h6>
-      <p>{props.description}</p>
-      <Button onClick={() => props.removeTodo(props.id)}>Delete</Button>
+      <h6> {title}</h6>
+      <p>{description}</p>
+      <Button onClick={() => removeTodo(id)}>Delete</Button>
     </li>
   );
 }
